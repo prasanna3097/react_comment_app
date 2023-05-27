@@ -16,11 +16,11 @@ const initialContainerBackgroundClassNames = [
 
 // Write your code here
 class Comments extends Component {
-  state = {commentList: [], nameInput: '', commentInput: ''}
+  state = {commentsList: [], nameInput: '', commentInput: ''}
 
   ontoggleLikeButton = id => {
     this.setState(prevState => ({
-      commentList: prevState.commentList.map(eachComment => {
+      commentsList: prevState.commentList.map(eachComment => {
         if (eachComment.id === id) {
           return {...eachComment, isLiked: !eachComment.isLiked}
         }
@@ -30,10 +30,10 @@ class Comments extends Component {
   }
 
   deleteComment = commentId => {
-    const {commentList} = this.state
+    const {commentsList} = this.state
 
     this.setState({
-      commentList: commentList.filter(comment => comment.id !== commentId),
+      commentsList: commentsList.filter(comment => comment.id !== commentId),
     })
   }
 
@@ -57,7 +57,7 @@ class Comments extends Component {
       initialClassName: initialBackgroundColorClassName,
     }
     this.setState(prevState => ({
-      commentList: [...prevState.commentList, newComment],
+      commentsList: [...prevState.commentList, newComment],
       nameInput: '',
       commentInput: '',
     }))
@@ -72,16 +72,14 @@ class Comments extends Component {
   }
 
   render() {
-    const {commentList, nameInput, commentInput} = this.state
+    const {commentsList, nameInput, commentInput} = this.state
     return (
       <div className="app-container">
         <div className="comments-container">
           <h1 className="main-heading">Comments</h1>
           <div className="input-container">
             <form className="form-container" onSubmit={this.onAddComment}>
-              <label className="label" htmlFor="input">
-                Say something about 4.0 Technologies
-              </label>
+              <p className="label">Say Something about 4.0 Technologies</p>
 
               <input
                 type="text"
@@ -110,11 +108,12 @@ class Comments extends Component {
             />
           </div>
           <p>
-            <span className="comments-count">{commentList.length}</span>Comments
+            <span className="comments-count">{commentsList.length}</span>
+            Comments
           </p>
 
           <ul className="comment-items">
-            {commentList.map(eachComment => (
+            {commentsList.map(eachComment => (
               <CommentItem
                 key={eachComment.id}
                 commentDetails={eachComment}
