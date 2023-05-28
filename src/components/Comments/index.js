@@ -20,7 +20,7 @@ class Comments extends Component {
 
   ontoggleLikeButton = id => {
     this.setState(prevState => ({
-      commentsList: prevState.commentList.map(eachComment => {
+      commentsList: prevState.commentsList.map(eachComment => {
         if (eachComment.id === id) {
           return {...eachComment, isLiked: !eachComment.isLiked}
         }
@@ -57,7 +57,7 @@ class Comments extends Component {
       initialClassName: initialBackgroundColorClassName,
     }
     this.setState(prevState => ({
-      commentsList: [...prevState.commentList, newComment],
+      commentsList: [...prevState.commentsList, newComment],
       nameInput: '',
       commentInput: '',
     }))
